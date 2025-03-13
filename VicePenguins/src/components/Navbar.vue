@@ -8,7 +8,7 @@ const { theme, toggleTheme } = useThemeConsumer();
   <nav class="navbar is-dark">
     <div class="navbar-brand">
       <RouterLink class="navbar-item" to="/">
-        <img src="/public/img/logo/vicepenguins_logo.png" alt="vicepenguins" class="logo">
+        <img src="/img/logo/vicepenguins_logo.png" alt="vicepenguins" class="logo">
       </RouterLink>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">Menú</a>
