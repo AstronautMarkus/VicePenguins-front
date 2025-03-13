@@ -10,13 +10,15 @@ const { theme, toggleTheme } = useThemeConsumer();
       <RouterLink class="navbar-item" to="/">
         <img src="/public/img/logo/vicepenguins_logo.png" alt="vicepenguins" class="logo">
       </RouterLink>
-      <RouterLink class="navbar-item" to="/">Mods</RouterLink>
-      <RouterLink class="navbar-item" to="/">Skins</RouterLink>
-      <RouterLink class="navbar-item" to="/">Texture Packs</RouterLink>     
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Menú</a>
+        <div class="navbar-dropdown">
+          <RouterLink class="navbar-item" to="/option1">Opción 1</RouterLink>
+        </div>
+      </div>
     </div>
+
     <div class="navbar-end">
-      <RouterLink class="navbar-item" to="/">Iniciar sesión</RouterLink>
-      <RouterLink class="navbar-item" to="/">Registrarse</RouterLink>
       <button class="button is-dark icon-button" @click="toggleTheme">
         <span v-if="theme === 'light'" class="icon">
           <MoonIcon class="w-6 h-6 text-gray-900" />
