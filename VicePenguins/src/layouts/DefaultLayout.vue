@@ -13,7 +13,7 @@
   import Footer from '../components/Footer.vue';
   </script>
   
-  <style scoped>
+  <style>
   .layout {
     display: flex;
     flex-direction: column;
@@ -23,6 +23,17 @@
   main {
     flex: 1;
     padding: 1rem;
+  }
+
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
   }
 
   </style>
