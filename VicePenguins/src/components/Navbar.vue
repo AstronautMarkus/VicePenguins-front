@@ -11,9 +11,8 @@ const { theme, toggleTheme } = useThemeConsumer();
       <RouterLink class="navbar-item" to="/">Inicio</RouterLink>
       <RouterLink class="navbar-item" to="/about">Acerca de</RouterLink>
     </div>
-
     <div class="navbar-end">
-      <button class="button is-light" @click="toggleTheme">
+      <button class="button is-light icon-button" @click="toggleTheme">
         <span v-if="theme === 'light'" class="icon">
           <MoonIcon class="w-6 h-6 text-gray-900" />
         </span>
@@ -27,7 +26,7 @@ const { theme, toggleTheme } = useThemeConsumer();
 
 <style scoped>
 .navbar {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .button {
@@ -41,5 +40,13 @@ const { theme, toggleTheme } = useThemeConsumer();
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0 1.5rem;
 }
 </style>
