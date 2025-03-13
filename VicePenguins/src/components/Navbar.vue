@@ -1,25 +1,26 @@
+<script setup>
+import { useThemeConsumer } from '../composables/theme';
+
+const { theme, toggleTheme } = useThemeConsumer();
+</script>
+
 <template>
-    <nav>
-      <ul>
-        <li><RouterLink to="/">Inicio</RouterLink></li>
-        <li><RouterLink to="/about">Acerca de</RouterLink></li>
-      </ul>
-    </nav>
-  </template>
-  
-  <style scoped>
-  nav {
-    background: #333;
-    padding: 1rem;
-  }
-  ul {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  </style>
-  
+  <nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <RouterLink class="navbar-item" to="/">Inicio</RouterLink>
+      <RouterLink class="navbar-item" to="/about">Acerca de</RouterLink>
+    </div>
+
+    <div class="navbar-end">
+      <button class="button is-light" @click="toggleTheme">
+        Tema: {{ theme === 'light' ? '🌞 Claro' : '🌙 Oscuro' }}
+      </button>
+    </div>
+  </nav>
+</template>
+
+<style scoped>
+.navbar {
+  padding: 1rem;
+}
+</style>
