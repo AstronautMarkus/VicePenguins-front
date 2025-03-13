@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="layout">
       <Navbar />
       <main>
         <slot />
@@ -14,9 +14,15 @@
   </script>
   
   <style scoped>
-  main {
-    padding: 1rem;
-    min-height: 80vh;
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
+
+  main {
+    flex: 1;
+    padding: 1rem;
+  }
+
   </style>
-  
