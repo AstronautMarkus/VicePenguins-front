@@ -1,5 +1,6 @@
 <script setup>
 import { useThemeConsumer } from '../composables/theme';
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/solid';
 
 const { theme, toggleTheme } = useThemeConsumer();
 </script>
@@ -13,7 +14,12 @@ const { theme, toggleTheme } = useThemeConsumer();
 
     <div class="navbar-end">
       <button class="button is-light" @click="toggleTheme">
-        Tema: {{ theme === 'light' ? '🌞 Claro' : '🌙 Oscuro' }}
+        <span v-if="theme === 'light'" class="icon">
+          <MoonIcon class="w-6 h-6 text-gray-900" />
+        </span>
+        <span v-else class="icon">
+          <SunIcon class="w-6 h-6 text-yellow-500" />
+        </span>
       </button>
     </div>
   </nav>
@@ -22,5 +28,18 @@ const { theme, toggleTheme } = useThemeConsumer();
 <style scoped>
 .navbar {
   padding: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
