@@ -12,6 +12,8 @@ const { theme, toggleTheme } = useThemeConsumer();
       <RouterLink class="navbar-item" to="/about">Acerca de</RouterLink>
     </div>
     <div class="navbar-end">
+      <RouterLink class="navbar-item" to="/about">Iniciar sesión</RouterLink>
+      <RouterLink class="navbar-item" to="/about">Registrarse</RouterLink>
       <button class="button is-light icon-button" @click="toggleTheme">
         <span v-if="theme === 'light'" class="icon">
           <MoonIcon class="w-6 h-6 text-gray-900" />
@@ -25,9 +27,6 @@ const { theme, toggleTheme } = useThemeConsumer();
 </template>
 
 <style scoped>
-.navbar {
-  padding: 0.5rem;
-}
 
 .button {
   display: flex;
