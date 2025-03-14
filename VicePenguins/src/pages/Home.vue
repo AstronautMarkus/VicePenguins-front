@@ -1,11 +1,55 @@
+<script setup>
+import DefaultLayout from '../layouts/DefaultLayout.vue';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+</script>
+
 <template>
-    <DefaultLayout>
-      <h1>Bienvenido a la página principal</h1>
-      <p>Este es el contenido de Home.vue</p>
-    </DefaultLayout>
-  </template>
-  
-  <script setup>
-  import DefaultLayout from '../layouts/DefaultLayout.vue';
-  </script>
-  
+  <DefaultLayout>
+    <section class="hero is-medium is-transparent">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-vcentered">
+            <div class="column is-8">
+              <h1 class="title is-1">¿Buscando algo nuevo, colega?</h1>
+              <p class="subtitle is-4">
+                Bienvenido a VicePenguins, tu página de mods para Minecraft.
+              </p>
+            </div>
+            
+            <div class="column is-4">
+              <figure class="penguin-image">
+                <img src="/img/logo/PenguinPixel.png" alt="Pingüino">
+              </figure>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="container has-text-centered mt-4">
+          <div class="field has-addons has-addons-centered">
+            <div class="control is-expanded" style="max-width: 100vh;">
+              <input class="input is-medium" type="text" placeholder="Buscar mods...">
+            </div>
+            <div class="control">
+              <button class="button is-info is-medium">
+                <span class="icon">
+                  <MagnifyingGlassIcon class="w-6 h-6" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    
+  </DefaultLayout>
+</template>
+
+<style>
+
+.penguin-image {
+  width: 200px;
+}
+
+</style>
