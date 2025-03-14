@@ -1,4 +1,4 @@
-import { UserIcon, ArchiveBoxArrowDownIcon, MapIcon } from "@heroicons/vue/24/outline";
+import { UserIcon, ArchiveBoxArrowDownIcon, MapIcon, PhotoIcon } from "@heroicons/vue/24/outline";
 
 export const categories = [
   {
@@ -15,5 +15,10 @@ export const categories = [
     title: "Maps",
     icon: MapIcon,
     url: "/maps",
+  },
+  {
+    title: "TexturePacks",
+    icon: PhotoIcon,
+    url: "/texturepacks",
   }
 ];
