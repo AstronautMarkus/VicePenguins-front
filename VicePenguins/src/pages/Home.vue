@@ -42,6 +42,25 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
       </div>
     </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card is-large">
+          <h1 class="title is-3 mt-3">Featured Mods</h1>
+          <div class="card-content">
+            <p>aqui irian los mocs</p>
+          </div>
+          <h1 class="title is-3 mt-3">Featured Mods</h1>
+          <div class="card-content">
+            <p>aqui irian los mocs</p>
+          </div>
+          <h1 class="title is-3 mt-3">Featured Mods</h1>
+          <div class="card-content">
+            <p>aqui irian los mocs</p>
+          </div> 
+        </div>
+      </div>
+    </section>
     
   </DefaultLayout>
 </template>
@@ -50,6 +69,12 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
 .penguin-image {
   width: 200px;
+}
+
+.card.is-large {
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 </style>
