@@ -57,5 +57,6 @@ const { theme, toggleTheme } = useThemeConsumer();
 .logo {
   height: auto;
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 </style>
