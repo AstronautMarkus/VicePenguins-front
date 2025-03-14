@@ -1,6 +1,8 @@
 <script setup>
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+import { categories } from '../components/categories/categories_data';
+import CategoryCard  from '../components/categories/categories_card.vue';
 </script>
 
 <template>
@@ -42,6 +44,15 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
       </div>
     </section>
+
+    <div class="container has-text-centered">
+      <h1 class="title is-2">Selecciona una categoría</h1>
+      <div class="columns is-multiline">
+        <div class="column is-one-quarter" v-for="(category, index) in categories" :key="index">
+        <CategoryCard :title="category.title" :icon="category.icon" :url="category.url" />
+        </div>
+      </div>
+    </div>
 
     <section class="section">
       <div class="container">
