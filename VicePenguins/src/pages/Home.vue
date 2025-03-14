@@ -76,7 +76,7 @@ import CategoryCard  from '../components/categories/categories_card.vue';
   </DefaultLayout>
 </template>
 
-<style>
+<style scoped>
 
 .penguin-image {
   width: 200px;
