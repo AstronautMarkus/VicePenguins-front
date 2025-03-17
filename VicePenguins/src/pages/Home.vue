@@ -1,7 +1,7 @@
 <script setup>
 import DefaultLayout from '../layouts/DefaultLayout.vue';
-import { categories } from '../components/categories/categories_data';
-import CategoryCard  from '../components/categories/categories_card.vue';
+import { categories } from '../components/Categories/CategoriesData';
+import CategoryCard  from '../components/Categories/CategoriesCard.vue';
 import SearchBar from '../components/SearchBar/SearchBar.vue';
 </script>
 
