@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useThemeConsumer } from '../composables/theme';
+import { useThemeConsumer } from '../../composables/theme';
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
 const { theme, toggleTheme } = useThemeConsumer();
 const isMenuOpen = ref(false);
