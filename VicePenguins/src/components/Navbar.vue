@@ -1,25 +1,46 @@
 <script setup>
+import { ref } from 'vue';
 import { useThemeConsumer } from '../composables/theme';
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
 const { theme, toggleTheme } = useThemeConsumer();
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
 </script>
 
 <template>
-  <nav class="navbar is-dark">
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <RouterLink class="navbar-item" to="/">
-        <img src="/img/logo/vicepenguins_logo.png" alt="vicepenguins" class="logo">
-      </RouterLink>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Menú</a>
-        <div class="navbar-dropdown">
-          <RouterLink class="navbar-item" to="/option1">Opción 1</RouterLink>
-        </div>
-      </div>
+      <a class="navbar-item" href="/">
+        <img src="/img/logo/vicepenguins_logo.png" 
+             alt="Foro Mods" width="150px" height="auto">
+      </a>
+      <a role="button" class="navbar-burger" :class="{ 'is-active': isMenuOpen }" 
+         aria-label="menu" aria-expanded="false" @click="toggleMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
 
-    <div class="navbar-end">
-      <button class="button is-dark icon-button" @click="toggleTheme">
+    <div class="navbar-menu" :class="{ 'is-active': isMenuOpen }">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">Mods</a>
+        <a class="navbar-item" href="/">Skins</a>
+        <a class="navbar-item" href="/">Tutoriales</a>
+        <a class="navbar-item" href="/">Artículos</a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-success"><strong>Registrarse</strong></a>
+            <a class="button is-info">Iniciar Sesión</a>
+          </div>
+        </div>
+
+        <button class="button is-dark icon-button" @click="toggleTheme">
         <span v-if="theme === 'light'" class="icon">
           <MoonIcon class="w-6 h-6 text-gray-900" />
         </span>
@@ -27,36 +48,14 @@ const { theme, toggleTheme } = useThemeConsumer();
           <SunIcon class="w-6 h-6 text-yellow-500" />
         </span>
       </button>
+      </div>
     </div>
   </nav>
 </template>
 
 <style scoped>
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-}
-
-.icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  margin: 0 1.5rem;
-}
-
-.logo {
-  height: auto;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+.navbar {
+  padding: 0.5rem 1rem;
 }
 </style>
+
