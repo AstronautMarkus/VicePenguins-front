@@ -37,17 +37,18 @@ const toggleMenu = () => {
           <div class="buttons">
             <a class="button is-success"><strong>Registrarse</strong></a>
             <a class="button is-info">Iniciar Sesión</a>
+            
+            <button class="button is-dark icon-button" @click="toggleTheme">
+              <span v-if="theme === 'light'" class="icon">
+                <MoonIcon class="w-6 h-6 text-gray-900" />
+              </span>
+              <span v-else class="icon">
+                <SunIcon class="w-6 h-6 text-yellow-500" />
+              </span>
+            </button>
           </div>
         </div>
 
-        <button class="button is-dark icon-button" @click="toggleTheme">
-        <span v-if="theme === 'light'" class="icon">
-          <MoonIcon class="w-6 h-6 text-gray-900" />
-        </span>
-        <span v-else class="icon">
-          <SunIcon class="w-6 h-6 text-yellow-500" />
-        </span>
-      </button>
       </div>
     </div>
   </nav>
