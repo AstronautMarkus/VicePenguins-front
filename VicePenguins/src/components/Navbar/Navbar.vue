@@ -26,8 +26,8 @@ const toggleMenu = () => {
 
     <div class="navbar-menu" :class="{ 'is-active': isMenuOpen }">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">Mods</a>
-        <a class="navbar-item" href="/">Skins</a>
+        <a class="navbar-item" href="/mods">Mods</a>
+        <a class="navbar-item" href="/skins">Skins</a>
         <a class="navbar-item" href="/">Tutoriales</a>
         <a class="navbar-item" href="/">Artículos</a>
       </div>
