@@ -1,6 +1,6 @@
 <script setup>
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const query = ref('');
@@ -11,6 +11,10 @@ onMounted(() => {
   if (savedQuery) {
     query.value = savedQuery;
   }
+});
+
+watch(query, (newQuery) => {
+  sessionStorage.setItem('searchQuery', newQuery.trim());
 });
 
 const search = () => {
@@ -38,5 +42,3 @@ const search = () => {
           </div>
         </div>
 </template>
-
-<style></style>
