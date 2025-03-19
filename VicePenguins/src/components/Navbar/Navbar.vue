@@ -97,7 +97,7 @@ onMounted(() => {
       <div class="box has-text-centered">
         <p class="title is-5">Confirmar Cierre de Sesión</p>
         <p>¿Estás seguro de que deseas cerrar sesión?</p>
-        <div class="buttons mt-4">
+        <div class="buttons mt-4 is-flex is-justify-content-center">
           <button class="button is-danger" @click="confirmLogout">Sí, cerrar sesión</button>
           <button class="button" @click="closeLogoutModal">Cancelar</button>
         </div>
