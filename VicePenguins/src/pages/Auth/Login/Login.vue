@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+import AuthUtils from '../../../components/AuthUtils/AuthUtils.vue';
+</script>
 
 <template>
     <section class="section">
         <div class="background"></div>
+        <AuthUtils />
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-4 login-box card">
