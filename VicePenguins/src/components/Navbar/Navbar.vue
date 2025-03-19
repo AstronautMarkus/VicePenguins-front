@@ -28,7 +28,7 @@ onMounted(() => {
 const logout = () => {
   localStorage.removeItem('token');
   username.value = null;
-  window.location.reload();
+  window.location.href = '/login';
 };
 </script>
 
