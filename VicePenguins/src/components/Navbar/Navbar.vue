@@ -7,9 +7,23 @@ import jwtDecode from 'jwt-decode';
 const { theme, toggleTheme } = useThemeConsumer();
 const isMenuOpen = ref(false);
 const username = ref(null);
-
+const isLogoutModalOpen = ref(false);
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+};
+
+const openLogoutModal = () => {
+  isLogoutModalOpen.value = true;
+};
+
+const closeLogoutModal = () => {
+  isLogoutModalOpen.value = false;
+};
+
+const confirmLogout = () => {
+  localStorage.removeItem('token');
+  username.value = null;
+  window.location.href = '/login';
 };
 
 onMounted(() => {
@@ -24,12 +38,6 @@ onMounted(() => {
     }
   }
 });
-
-const logout = () => {
-  localStorage.removeItem('token');
-  username.value = null;
-  window.location.href = '/login';
-};
 </script>
 
 <template>
@@ -60,7 +68,7 @@ const logout = () => {
           <div class="buttons">
             <template v-if="username">
               <span class="navbar-item">{{ username }}</span>
-              <button class="button is-danger" @click="logout">Cerrar Sesión</button>
+              <button class="button is-danger" @click="openLogoutModal">Cerrar Sesión</button>
             </template>
 
             <template v-else>
@@ -81,6 +89,22 @@ const logout = () => {
       </div>
     </div>
   </nav>
+
+
+  <div class="modal" :class="{ 'is-active': isLogoutModalOpen }">
+    <div class="modal-background" @click="closeLogoutModal"></div>
+    <div class="modal-content is-flex is-justify-content-center is-align-items-center">
+      <div class="box has-text-centered">
+        <p class="title is-5">Confirmar Cierre de Sesión</p>
+        <p>¿Estás seguro de que deseas cerrar sesión?</p>
+        <div class="buttons mt-4">
+          <button class="button is-danger" @click="confirmLogout">Sí, cerrar sesión</button>
+          <button class="button" @click="closeLogoutModal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" @click="closeLogoutModal"></button>
+  </div>
 </template>
 
 <style scoped>
