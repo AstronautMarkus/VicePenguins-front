@@ -1,11 +1,34 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useThemeConsumer } from '../../composables/theme';
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
+import jwtDecode from 'jwt-decode';
+
 const { theme, toggleTheme } = useThemeConsumer();
 const isMenuOpen = ref(false);
+const username = ref(null);
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+};
+
+onMounted(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const decoded = jwtDecode(token);
+      username.value = decoded.username;
+    } catch (error) {
+      console.error("Error al decodificar el token:", error);
+      localStorage.removeItem('token'); 
+    }
+  }
+});
+
+const logout = () => {
+  localStorage.removeItem('token');
+  username.value = null;
+  window.location.reload();
 };
 </script>
 
@@ -35,9 +58,16 @@ const toggleMenu = () => {
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a href="/register" class="button is-success"><strong>Registrarse</strong></a>
-            <a href="/login" class="button is-info">Iniciar Sesión</a>
-            
+            <template v-if="username">
+              <span class="navbar-item">{{ username }}</span>
+              <button class="button is-danger" @click="logout">Cerrar Sesión</button>
+            </template>
+
+            <template v-else>
+              <a href="/register" class="button is-success"><strong>Registrarse</strong></a>
+              <a href="/login" class="button is-info">Iniciar Sesión</a>
+            </template>
+
             <button class="button is-dark icon-button" @click="toggleTheme">
               <span v-if="theme === 'light'" class="icon">
                 <MoonIcon class="w-6 h-6 text-gray-900" />
@@ -48,7 +78,6 @@ const toggleMenu = () => {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   </nav>
@@ -59,4 +88,3 @@ const toggleMenu = () => {
   padding: 0.5rem 1rem;
 }
 </style>
-
