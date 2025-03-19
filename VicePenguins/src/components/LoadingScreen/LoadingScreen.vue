@@ -1,13 +1,7 @@
 <template>
-    <section class="hero is-fullheight is-bold">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="loader-wrapper">
-                    <div class="loader"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
 </template>
 
 <script>
@@ -21,7 +15,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 .loader {
