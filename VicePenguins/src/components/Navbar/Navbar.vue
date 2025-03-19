@@ -1,13 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useThemeConsumer } from '../../composables/theme';
-import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
+import { SunIcon, MoonIcon, UserIcon, ShieldCheckIcon, CogIcon } from '@heroicons/vue/24/outline';
 import jwtDecode from 'jwt-decode';
 
 const { theme, toggleTheme } = useThemeConsumer();
 const isMenuOpen = ref(false);
 const username = ref(null);
+const roleId = ref(null);
 const isLogoutModalOpen = ref(false);
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
@@ -23,6 +25,7 @@ const closeLogoutModal = () => {
 const confirmLogout = () => {
   localStorage.removeItem('token');
   username.value = null;
+  roleId.value = null;
   window.location.href = '/login';
 };
 
@@ -32,6 +35,7 @@ onMounted(() => {
     try {
       const decoded = jwtDecode(token);
       username.value = decoded.username;
+      roleId.value = decoded.role_id;
     } catch (error) {
       console.error("Error al decodificar el token:", error);
       localStorage.removeItem('token'); 
@@ -67,7 +71,18 @@ onMounted(() => {
         <div class="navbar-item">
           <div class="buttons">
             <template v-if="username">
-              <span class="navbar-item">{{ username }}</span>
+              <span class="navbar-item">
+                <span v-if="roleId === 1" class="icon">
+                  <UserIcon class="w-6 h-6 text-gray-500" />
+                </span>
+                <span v-else-if="roleId === 2" class="icon">
+                  <ShieldCheckIcon class="w-6 h-6 text-blue-500" />
+                </span>
+                <span v-else-if="roleId === 3" class="icon">
+                  <CogIcon class="w-6 h-6 text-red-500" />
+                </span>
+                {{ username }}
+              </span>
               <button class="button is-danger" @click="openLogoutModal">Cerrar Sesión</button>
             </template>
 
