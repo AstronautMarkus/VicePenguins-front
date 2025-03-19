@@ -5,7 +5,7 @@ import SearchResult from './pages/SearchResult.vue';
 import Mods from './pages/Mods.vue';
 
 import Login from './pages/Auth/Login/Login.vue';
-import Register from './pages/Auth/Register/Register.vue';
+import SignIn from './pages/Auth/SignIn/SignIn.vue';
 
 const routes = [
   { path: '/', component: Home, meta: { title: 'Inicio' } },
@@ -13,7 +13,7 @@ const routes = [
   { path: '/search/:query', component: SearchResult, meta: { title: 'Resultados de la búsqueda' } },
   { path: '/mods', component: Mods, meta: { title: 'Mods' } },
   { path: '/login', component: Login, meta: { title: 'Iniciar sesión' } },
-  { path: '/register', component: Register, meta: { title: 'Registrarse' } },
+  { path: '/register', component: SignIn, meta: { title: 'Iniciar sesión' } }
 ];
 
 const router = createRouter({
