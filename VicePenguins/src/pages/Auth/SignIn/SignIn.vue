@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import AuthUtils from '../../../components/AuthUtils/AuthUtils.vue';
+
+
 
 const username = ref('');
 const email = ref('');
@@ -20,6 +23,7 @@ const handleRegister = () => {
 <template>
     <section class="section">
         <div class="background"></div>
+        <AuthUtils />
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-4 register-box card">
