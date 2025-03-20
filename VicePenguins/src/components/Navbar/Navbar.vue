@@ -60,7 +60,7 @@ onMounted(() => {
     </div>
 
     <div class="navbar-menu" :class="{ 'is-active': isMenuOpen }">
-      <div class="navbar-start">
+      <div class="navbar-start" v-if="roleId == 1 || roleId == 2">
         <a class="navbar-item" href="/mods">Mods</a>
         <a class="navbar-item" href="/skins">Skins</a>
         <a class="navbar-item" href="/">Tutoriales</a>
