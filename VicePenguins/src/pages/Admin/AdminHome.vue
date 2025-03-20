@@ -3,11 +3,11 @@ import AdminLayout from '../../layouts/AdminLayout.vue';
 import { ChartBarIcon, UserGroupIcon, EyeIcon, BellIcon, ArchiveBoxIcon, PlusCircleIcon, ListBulletIcon } from '@heroicons/vue/24/outline';
 
 const stats = [
-  { label: "Mods Publicados", value: 0, icon: ChartBarIcon },
-  { label: "Usuarios activos", value: 0, icon: UserGroupIcon },
-  { label: "Visitas totales", value: 0, icon: EyeIcon },
-  { label: "Mods en revisión", value: 0, icon: ArchiveBoxIcon },
-  { label: "Notificaciones", value: 0, icon: BellIcon },
+  { label: "Mods Publicados", value: 0, icon: ChartBarIcon, color: "#FFD700" },
+  { label: "Usuarios activos", value: 0, icon: UserGroupIcon, color: "#4CAF50" },
+  { label: "Visitas totales", value: 0, icon: EyeIcon, color: "#2196F3" },
+  { label: "Mods en revisión", value: 0, icon: ArchiveBoxIcon, color: "#FF5722" },
+  { label: "Notificaciones", value: 0, icon: BellIcon, color: "#9C27B0" },
 ];
 
 const actions = [
@@ -26,8 +26,8 @@ const actions = [
 
         <div class="columns is-multiline is-centered mt-5">
           <div v-for="stat in stats" :key="stat.label" class="column is-one-fifth">
-            <div class="box has-text-centered">
-              <p class="heading">{{ stat.label }}</p>
+            <div class="box has-text-centered" :style="{ backgroundColor: stat.color }">
+              <p class="subtitle">{{ stat.label }}</p>
               <p class="title">{{ stat.value }}</p>
               <component :is="stat.icon" class="icon is-large" />
             </div>
@@ -53,13 +53,14 @@ const actions = [
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  color: #fff; /* Ensure text is readable on colored backgrounds */
 }
 
 .icon {
   margin-top: 10px;
   width: 30px;
   height: 30px;
-  color: #4a4a4a;
+  color: #fff; /* Ensure icons are visible on colored backgrounds */
 }
 
 .icon-button {
