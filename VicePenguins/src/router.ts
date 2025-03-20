@@ -12,8 +12,10 @@ const routes = [
   { path: '/about', component: About, meta: { title: 'Sobre' } },
   { path: '/search/:query', component: SearchResult, meta: { title: 'Resultados de la búsqueda' } },
   { path: '/mods', component: Mods, meta: { title: 'Mods' } },
-  { path: '/login', component: Login, meta: { title: 'Iniciar sesión' } },
-  { path: '/register', component: SignIn, meta: { title: 'Iniciar sesión' } }
+  { path: '/auth', children: [
+    { path: 'login', component: Login, meta: { title: 'Iniciar sesión' } },
+    { path: 'register', component: SignIn, meta: { title: 'Registrarse' } },
+  ] },
 ];
 
 const router = createRouter({

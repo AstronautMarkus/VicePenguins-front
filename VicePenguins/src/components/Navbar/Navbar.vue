@@ -26,7 +26,7 @@ const confirmLogout = () => {
   localStorage.removeItem('token');
   username.value = null;
   roleId.value = null;
-  window.location.href = '/login';
+  window.location.href = '/auth/login';
 };
 
 onMounted(() => {
@@ -87,8 +87,8 @@ onMounted(() => {
             </template>
 
             <template v-else>
-              <a href="/register" class="button is-success"><strong>Registrarse</strong></a>
-              <a href="/login" class="button is-info">Iniciar Sesión</a>
+              <a href="/auth/register" class="button is-success"><strong>Registrarse</strong></a>
+              <a href="/auth/login" class="button is-info">Iniciar Sesión</a>
             </template>
 
             <button class="button is-dark icon-button" @click="toggleTheme">

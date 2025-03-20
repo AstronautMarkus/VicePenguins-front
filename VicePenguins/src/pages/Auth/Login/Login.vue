@@ -87,7 +87,7 @@ const handleLogin = async () => {
                                     </button>
                                 </div>
                                 <p class="has-text-centered mt-4">
-                                    <a href="/register" class="has-text-link">
+                                    <a href="/auth/register" class="has-text-link">
                                         ¿No tienes una cuenta? Regístrate aquí
                                     </a>
                                 </p>
