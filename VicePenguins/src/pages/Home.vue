@@ -1,7 +1,7 @@
 <script setup>
 import DefaultLayout from '../layouts/DefaultLayout.vue';
-import { categories } from '../components/categories/categories_data';
-import CategoryCard  from '../components/categories/categories_card.vue';
+import { categories } from '../components/Categories/CategoriesData';
+import CategoryCard  from '../components/Categories/CategoriesCard.vue';
 import SearchBar from '../components/SearchBar/SearchBar.vue';
 </script>
 
@@ -10,20 +10,19 @@ import SearchBar from '../components/SearchBar/SearchBar.vue';
     <section class="hero is-medium is-transparent">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <div class="columns is-vcentered">
-            <div class="column is-8">
+          <div class="columns is-vcentered is-multiline">
+            <div class="column is-12-mobile is-8-tablet is-8-desktop">
               <h1 class="title is-1">¿Buscando algo nuevo, colega?</h1>
               <p class="subtitle is-4">
                 Bienvenido a VicePenguins, tu página de mods para Minecraft.
               </p>
             </div>
             
-            <div class="column is-4">
-              <figure class="penguin-image">
+            <div class="column is-12-mobile is-4-tablet is-4-desktop">
+              <figure class="penguin-image mx-auto">
                 <img src="/img/logo/PenguinPixel.png" alt="Pingüino">
               </figure>
             </div>
-
           </div>
         </div>
 
@@ -66,7 +65,13 @@ import SearchBar from '../components/SearchBar/SearchBar.vue';
 <style scoped>
 
 .penguin-image {
-  width: 200px;
+  width: 150px;
+}
+
+@media (min-width: 768px) {
+  .penguin-image {
+    width: 200px;
+  }
 }
 
 .card.is-large {

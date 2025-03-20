@@ -1,14 +1,26 @@
 <script setup>
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const query = ref('');
 const router = useRouter();
 
+onMounted(() => {
+  const savedQuery = sessionStorage.getItem('searchQuery');
+  if (savedQuery) {
+    query.value = savedQuery;
+  }
+});
+
+watch(query, (newQuery) => {
+  sessionStorage.setItem('searchQuery', newQuery.trim());
+});
+
 const search = () => {
   if (query.value.trim()) {
     const encodedQuery = encodeURIComponent(query.value.trim());
+    sessionStorage.setItem('searchQuery', query.value.trim());
     router.push(`/search/${encodedQuery}`);
   }
 };
@@ -30,5 +42,3 @@ const search = () => {
           </div>
         </div>
 </template>
-
-<style></style>
