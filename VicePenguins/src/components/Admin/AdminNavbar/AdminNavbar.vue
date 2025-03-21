@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useThemeConsumer } from '../../composables/theme';
+import { useThemeConsumer } from '../../../composables/theme';
 import { SunIcon, MoonIcon, UserIcon, ShieldCheckIcon, CogIcon } from '@heroicons/vue/24/outline';
 import jwtDecode from 'jwt-decode';
 

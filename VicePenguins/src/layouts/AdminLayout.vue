@@ -1,6 +1,6 @@
 <script setup>
-import AdminSidebar from '../components/AdminSidebar/AdminSidebar.vue';
-import AdminNavbar from '../components/AdminNavbar/AdminNavbar.vue';
+import AdminSidebar from '../components/Admin/AdminSidebar/AdminSidebar.vue';
+import AdminNavbar from '../components/Admin/AdminNavbar/AdminNavbar.vue';
 </script>
 
 <template>
