@@ -1,15 +1,15 @@
 <script setup>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faTable, faUser, faSignInAlt, faStar, faCode, faBars } from '@fortawesome/free-solid-svg-icons';
-library.add(faTable, faUser, faSignInAlt, faStar, faCode, faBars);
+import {faPuzzlePiece } from '@fortawesome/free-solid-svg-icons';
+library.add(faPuzzlePiece);
 </script>
 
 <template>
     <aside class="sidebar has-background-dark is-fullheight">
       <div class="sidebar-section">
-        <router-link to="/tables" class="sidebar-item">
-          <FontAwesomeIcon icon="table" class="icon" />
+        <router-link to="/admin/mods" class="sidebar-item">
+          <FontAwesomeIcon icon="puzzle-piece" class="icon" />
           <span>Lista de Mods</span>
         </router-link>
       </div>
