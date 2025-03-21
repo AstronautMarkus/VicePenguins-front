@@ -8,6 +8,7 @@ import Login from './pages/Auth/Login/Login.vue';
 import SignIn from './pages/Auth/SignIn/SignIn.vue';
 
 import AdminHome from './pages/Admin/AdminHome.vue';
+import AdminModsList from './pages/Admin/Mods/AdminModsList.vue';
 
 const routes = [
   { path: '/', component: Home, meta: { title: 'Inicio' } },
@@ -20,6 +21,7 @@ const routes = [
   ] },
   { path:'/admin', children: [
     { path: '', component: AdminHome, meta: { title: 'Panel de administración' } },
+    { path: 'mods', component: AdminModsList, meta: { title: 'Mods' } },
   ]}
 ];
 
