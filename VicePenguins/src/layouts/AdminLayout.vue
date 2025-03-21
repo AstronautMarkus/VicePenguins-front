@@ -30,7 +30,8 @@ import AdminNavbar from '../components/Admin/AdminNavbar/AdminNavbar.vue';
 main {
   flex: 1;
   padding: 1rem;
-  overflow-y: auto;
+  overflow-y: auto; 
+  height: calc(100vh - var(--navbar-height));
 }
 
 AdminSidebar {
@@ -47,5 +48,15 @@ AdminSidebar {
 html, body {
   width: 100%;
   height: 100%;
+}
+
+
+:root {
+  --navbar-height: 60px;
+}
+
+AdminNavbar {
+  height: var(--navbar-height);
+  flex-shrink: 0;
 }
 </style>

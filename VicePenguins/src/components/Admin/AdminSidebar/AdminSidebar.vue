@@ -10,23 +10,7 @@ library.add(faTable, faUser, faSignInAlt, faStar, faCode, faBars);
       <div class="sidebar-section">
         <router-link to="/tables" class="sidebar-item">
           <FontAwesomeIcon icon="table" class="icon" />
-          <span>Tables</span>
-        </router-link>
-        <router-link to="/forms" class="sidebar-item">
-          <FontAwesomeIcon icon="bars" class="icon" />
-          <span>Forms</span>
-        </router-link>
-        <router-link to="/profile" class="sidebar-item">
-          <FontAwesomeIcon icon="user" class="icon" />
-          <span>Profile</span>
-        </router-link>
-        <router-link to="/login" class="sidebar-item">
-          <FontAwesomeIcon icon="sign-in-alt" class="icon" />
-          <span>Login</span>
-        </router-link>
-        <router-link to="/submenus" class="sidebar-item">
-          <FontAwesomeIcon icon="code" class="icon" />
-          <span>Submenus</span>
+          <span>Lista de Mods</span>
         </router-link>
       </div>
     </aside>
