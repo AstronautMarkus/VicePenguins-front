@@ -55,12 +55,17 @@ const removeImage = (index) => {
 const submitForm = () => {
     const modDescription = quillInstance.root.innerHTML;
 
-    console.log("Nombre del mod:", modName.value);
-    console.log("Descripción del mod:", modDescription);
-    console.log("Autor del mod:", authorName.value);
-    console.log("Imágenes del mod:", images.value);  
+    const formData = {
+        modName: modName.value,
+        modDescription,
+        authorName: authorName.value,
+        images: images.value,
+        modVersions: modVersions.value,
+        tags: tags.value,
+        dependencies: dependencies.value,
+    };
 
-    
+    console.log("Formulario completo (JSON):", JSON.stringify(formData, null, 2));
 };
 
 const tagsInput = ref('');
