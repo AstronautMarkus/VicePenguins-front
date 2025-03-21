@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 defineProps<{
   title: string;
   icon: any;
@@ -8,7 +10,7 @@ defineProps<{
 
 <template>
   <a :href="url" class="box has-text-centered">
-    <component :is="icon" class="icon is-large" />
+    <font-awesome-icon :icon="icon" class="icon is-large" />
     <p>{{ title }}</p>
   </a>
 </template>

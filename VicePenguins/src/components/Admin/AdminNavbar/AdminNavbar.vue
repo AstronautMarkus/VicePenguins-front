@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useThemeConsumer } from '../../../composables/theme';
-import { SunIcon, MoonIcon, UserIcon, ShieldCheckIcon, CogIcon } from '@heroicons/vue/24/outline';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faSun, faMoon, faUser, faShieldAlt, faCog } from '@fortawesome/free-solid-svg-icons';
 import jwtDecode from 'jwt-decode';
 
 const { theme, toggleTheme } = useThemeConsumer();
@@ -67,13 +68,13 @@ onMounted(() => {
             <template v-if="username">
               <span class="navbar-item">
                 <span v-if="roleId === 1" class="icon">
-                  <UserIcon class="w-6 h-6 text-gray-500" />
+                  <font-awesome-icon :icon="faUser" class="w-6 h-6 text-gray-500" />
                 </span>
                 <span v-else-if="roleId === 2" class="icon">
-                  <ShieldCheckIcon class="w-6 h-6 text-blue-500" />
+                  <font-awesome-icon :icon="faShieldAlt" class="w-6 h-6 text-blue-500" />
                 </span>
                 <span v-else-if="roleId === 3" class="icon">
-                  <CogIcon class="w-6 h-6 text-red-500" />
+                  <font-awesome-icon :icon="faCog" class="w-6 h-6 text-red-500" />
                 </span>
                 {{ username }}
               </span>
@@ -87,10 +88,10 @@ onMounted(() => {
 
             <button class="button is-dark icon-button" @click="toggleTheme">
               <span v-if="theme === 'light'" class="icon">
-                <MoonIcon class="w-6 h-6 text-gray-900" />
+                <font-awesome-icon :icon="faMoon" class="w-6 h-6 text-gray-900" />
               </span>
               <span v-else class="icon">
-                <SunIcon class="w-6 h-6 text-yellow-500" />
+                <font-awesome-icon :icon="faSun" class="w-6 h-6 text-yellow-500" />
               </span>
             </button>
           </div>

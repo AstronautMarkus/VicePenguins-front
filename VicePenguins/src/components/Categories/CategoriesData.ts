@@ -1,24 +1,24 @@
-import { UserIcon, ArchiveBoxArrowDownIcon, MapIcon, PhotoIcon } from "@heroicons/vue/24/outline";
+import { faUser, faBoxArchive, faMap, faImage } from '@fortawesome/free-solid-svg-icons';
 
 export const categories = [
   {
     title: "Mods",
-    icon: ArchiveBoxArrowDownIcon,
+    icon: faBoxArchive,
     url: "/mods",
   },
   {
     title: "Skins",
-    icon: UserIcon,
+    icon: faUser,
     url: "/skins",
   },
   {
     title: "Maps",
-    icon: MapIcon,
+    icon: faMap,
     url: "/maps",
   },
   {
     title: "TexturePacks",
-    icon: PhotoIcon,
+    icon: faImage,
     url: "/texturepacks",
   }
 ];
