@@ -42,10 +42,10 @@ const fetchStats = async () => {
 onMounted(fetchStats);
 
 const actions = [
-  { label: "Listar Mods", icon: faList, route: "/" },
-  { label: "Publicar un Mod", icon: faCirclePlus, route: "/" },
-  { label: "Listar Usuarios", icon: faList, route: "/" },
-  { label: "Crear Usuario", icon: faCirclePlus, route: "/" },
+  { label: "Listar Mods", icon: faList, route: "/", color: "has-background-info" },
+  { label: "Publicar un Mod", icon: faCirclePlus, route: "/", color: "has-background-success" },
+  { label: "Listar Usuarios", icon: faList, route: "/", color: "has-background-warning" },
+  { label: "Crear Usuario", icon: faCirclePlus, route: "/", color: "has-background-danger" },
 ];
 </script>
 
@@ -74,9 +74,9 @@ const actions = [
         <h2 class="subtitle has-text-centered mt-6">Acciones Rápidas</h2>
         <div class="columns is-multiline is-centered">
           <div v-for="action in actions" :key="action.label" class="column is-one-quarter">
-            <router-link :to="action.route" class="button is-primary is-fullwidth">
-              <font-awesome-icon :icon="action.icon" class="icon-button" />
-              {{ action.label }}
+            <router-link :to="action.route" class="box has-text-centered" :class="action.color">
+              <font-awesome-icon :icon="action.icon" class="icon-large mb-3" />
+              <p class="is-size-6 has-text-white">{{ action.label }}</p>
             </router-link>
           </div>
         </div>
@@ -88,9 +88,14 @@ const actions = [
 <style scoped>
 .box {
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 15px rgba(155, 155, 155, 0.2);
   padding: 20px;
   color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.box:hover {
+  transform: scale(1.05);
 }
 
 .icon {
@@ -103,6 +108,11 @@ const actions = [
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.icon-large {
+  width: 30px;
+  height: 50px;
 }
 
 .is-size-7 {
