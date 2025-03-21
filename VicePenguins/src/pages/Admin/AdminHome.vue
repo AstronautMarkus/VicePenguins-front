@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import AdminLayout from '../../layouts/AdminLayout.vue'
+import AdminLayout from '../../layouts/AdminLayout.vue';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen.vue';
-import { ChartBarIcon, UserGroupIcon, EyeIcon, BellIcon, ArchiveBoxIcon, PlusCircleIcon, ListBulletIcon } from '@heroicons/vue/24/outline';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faPuzzlePiece, faUsers, faEye, faBell, faBoxArchive, faCirclePlus, faList } from '@fortawesome/free-solid-svg-icons';
 
 const stats = ref([]);
 const updatedAt = ref('');
@@ -23,11 +24,11 @@ const fetchStats = async () => {
     const data = response.data;
 
     stats.value = [
-      { label: "Mods Publicados", value: data.total_mods, icon: ChartBarIcon },
-      { label: "Usuarios activos", value: data.users_active, icon: UserGroupIcon },
-      { label: "Visitas totales", value: data.total_views, icon: EyeIcon },
-      { label: "Mods en revisión", value: data.mods_in_review, icon: ArchiveBoxIcon },
-      { label: "Notificaciones", value: data.notifications, icon: BellIcon },
+      { label: "Mods Publicados", value: data.total_mods, icon: faPuzzlePiece },
+      { label: "Usuarios activos", value: data.users_active, icon: faUsers },
+      { label: "Visitas totales", value: data.total_views, icon: faEye },
+      { label: "Mods en revisión", value: data.mods_in_review, icon: faBoxArchive },
+      { label: "Notificaciones", value: data.notifications, icon: faBell },
     ];
     updatedAt.value = data.updated_at;
   } catch (error) {
@@ -41,10 +42,10 @@ const fetchStats = async () => {
 onMounted(fetchStats);
 
 const actions = [
-  { label: "Listar Mods", icon: ListBulletIcon, route: "/" },
-  { label: "Publicar un Mod", icon: PlusCircleIcon, route: "/" },
-  { label: "Listar Usuarios", icon: ListBulletIcon, route: "/" },
-  { label: "Crear Usuario", icon: PlusCircleIcon, route: "/" },
+  { label: "Listar Mods", icon: faList, route: "/" },
+  { label: "Publicar un Mod", icon: faCirclePlus, route: "/" },
+  { label: "Listar Usuarios", icon: faList, route: "/" },
+  { label: "Crear Usuario", icon: faCirclePlus, route: "/" },
 ];
 </script>
 
@@ -55,7 +56,7 @@ const actions = [
         <h1 class="title has-text-centered">Resumen general</h1>
         <LoadingScreen v-if="isLoading" />
         <div v-else-if="errorMessage" class="has-text-centered">
-          <p class="is-size-5  has-text-danger">{{ errorMessage }}</p>
+          <p class="is-size-5 has-text-danger">{{ errorMessage }}</p>
         </div>
 
         <div v-else>
@@ -64,7 +65,7 @@ const actions = [
               <div class="box has-text-centered">
                 <p class="subtitle">{{ stat.label }}</p>
                 <p class="title">{{ stat.value }}</p>
-                <component :is="stat.icon" class="subtitle icon is-medium" />
+                <font-awesome-icon :icon="stat.icon" class="subtitle icon is-medium" />
               </div>
             </div>
           </div>
@@ -74,7 +75,7 @@ const actions = [
         <div class="columns is-multiline is-centered">
           <div v-for="action in actions" :key="action.label" class="column is-one-quarter">
             <router-link :to="action.route" class="button is-primary is-fullwidth">
-              <component :is="action.icon" class="icon-button" />
+              <font-awesome-icon :icon="action.icon" class="icon-button" />
               {{ action.label }}
             </router-link>
           </div>
