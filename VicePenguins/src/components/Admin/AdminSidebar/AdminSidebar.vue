@@ -19,6 +19,11 @@ library.add(faTable, faUser, faSignInAlt, faStar, faCode, faBars);
 <style scoped>
   .sidebar {
     width: 250px;
+    height: calc(100vh - var(--navbar-height));
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    overflow-y: auto;
     border-radius: 0px;
     display: flex;
     flex-direction: column;
