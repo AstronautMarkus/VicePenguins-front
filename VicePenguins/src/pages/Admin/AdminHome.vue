@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import AdminLayout from '../../layouts/AdminLayout.vue';
+import AdminHeroSection from '../../components/Admin/AdminHeroSection/AdminHeroSection.vue';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faPuzzlePiece, faUsers, faEye, faBell, faBoxArchive, faCirclePlus, faList } from '@fortawesome/free-solid-svg-icons';
@@ -53,6 +54,7 @@ const actions = [
   <AdminLayout>
     <section class="section">
       <div class="container">
+        <AdminHeroSection />
         <h1 class="title has-text-centered">Resumen general</h1>
         <LoadingScreen v-if="isLoading" />
         <div v-else-if="errorMessage" class="has-text-centered">
