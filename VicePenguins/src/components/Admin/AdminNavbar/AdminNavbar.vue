@@ -49,7 +49,7 @@ onMounted(() => {
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/admin">
-        <img src="/img/logo/vicepenguins_logo.png" 
+        <img src="/img/logo/vicepenguins_dashboard.png" 
              alt="Foro Mods" width="150px" height="auto">
       </a>
       <a role="button" class="navbar-burger" :class="{ 'is-active': isMenuOpen }" 
