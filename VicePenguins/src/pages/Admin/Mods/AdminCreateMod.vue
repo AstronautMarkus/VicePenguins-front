@@ -89,7 +89,7 @@ const removeDependency = (index) => {
 <template>
     <AdminLayout>
         <div class="form-container">
-            <h1>Crear un Mod</h1>
+            <h1 class="title is-2 has-text-centered">Crear un Mod</h1>
 
             
             <div class="form-group">
@@ -223,8 +223,10 @@ const removeDependency = (index) => {
             </div>
 
             <div class="form-group">
-                <button @click="submitForm" class="button is-success">Crear Mod</button>
+                <button @click="submitForm" class="button is-success mr-2">Crear Mod</button>
+                <router-link to="/admin" class="button is-danger">Salir</router-link>
             </div>
+
         </div>
     </AdminLayout>
 </template>

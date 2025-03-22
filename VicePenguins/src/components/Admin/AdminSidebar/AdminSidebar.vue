@@ -1,8 +1,8 @@
 <script setup>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import {faPuzzlePiece } from '@fortawesome/free-solid-svg-icons';
-library.add(faPuzzlePiece);
+import {faPuzzlePiece, faPerson} from '@fortawesome/free-solid-svg-icons';
+library.add(faPuzzlePiece, faPerson);
 </script>
 
 <template>
@@ -11,6 +11,10 @@ library.add(faPuzzlePiece);
         <router-link to="/admin/mods" class="sidebar-item">
           <FontAwesomeIcon icon="puzzle-piece" class="icon" />
           <span>Lista de Mods</span>
+        </router-link>
+        <router-link to="/admin/skins" class="sidebar-item">
+          <FontAwesomeIcon icon="person" class="icon" />
+          <span>Lista de Skins</span>
         </router-link>
       </div>
     </aside>

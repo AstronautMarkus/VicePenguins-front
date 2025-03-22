@@ -43,10 +43,10 @@ const fetchStats = async () => {
 onMounted(fetchStats);
 
 const actions = [
-  { label: "Listar Mods", icon: faList, route: "/", color: "has-background-info" },
-  { label: "Publicar un Mod", icon: faCirclePlus, route: "/", color: "has-background-success" },
-  { label: "Listar Usuarios", icon: faList, route: "/", color: "has-background-warning" },
-  { label: "Crear Usuario", icon: faCirclePlus, route: "/", color: "has-background-danger" },
+  { label: "Listar Mods", icon: faList, route: "/admin/mods", color: "has-background-info" },
+  { label: "Publicar un Mod", icon: faCirclePlus, route: "/admin/mods/create", color: "has-background-success" },
+  { label: "Listar Usuarios", icon: faList, route: "/admin/users", color: "has-background-warning" },
+  { label: "Crear Usuario", icon: faCirclePlus, route: "/admin/users/create", color: "has-background-danger" },
 ];
 </script>
 
