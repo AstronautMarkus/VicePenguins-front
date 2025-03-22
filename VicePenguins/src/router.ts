@@ -10,6 +10,7 @@ import SignIn from './pages/Auth/SignIn/SignIn.vue';
 import AdminHome from './pages/Admin/AdminHome.vue';
 import AdminModsList from './pages/Admin/Mods/AdminModsList.vue';
 import AdminCreateMod from './pages/Admin/Mods/AdminCreateMod.vue';
+import AdminCreateSkin from './pages/Admin/Skins/AdminCreateSkin.vue';
 
 const routes = [
   { path: '/', component: Home, meta: { title: 'Inicio' } },
@@ -24,6 +25,7 @@ const routes = [
     { path: '', component: AdminHome, meta: { title: 'Panel de administración' } },
     { path: 'mods', component: AdminModsList, meta: { title: 'Mods' } },
     { path: 'mods/create', component: AdminCreateMod, meta: { title: 'Crear mod' } },
+    { path: 'skins/create', component: AdminCreateSkin, meta: { title: 'Crear skin' } },
   ]}
 ];
 
