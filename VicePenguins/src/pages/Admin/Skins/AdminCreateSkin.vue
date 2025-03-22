@@ -10,6 +10,7 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 const skinName = ref("");
 const file = ref(null);
 const previewUrl = ref(null);
+const skinTypeId = ref(null);
 const { uploadSkin, message, messageClass, isLoading } = useSkinUploader();
 const { sceneRef, applySkin, toggleModelType, setRotationSpeed, togglePause, isPaused } = useSkinRenderer();
 const rotationSpeed = ref(0.01);
@@ -30,8 +31,17 @@ function handleSpeedChange(event) {
   setRotationSpeed(parseFloat(event.target.value));
 }
 
+function selectSkinType(type) {
+  skinTypeId.value = type;
+}
+
 async function handleUpload() {
-  await uploadSkin(skinName.value, file.value);
+  if (!skinTypeId.value) {
+    message.value = "Please select a body type.";
+    messageClass.value = "error";
+    return;
+  }
+  await uploadSkin(skinName.value, file.value, skinTypeId.value);
 }
 </script>
 
@@ -48,6 +58,23 @@ async function handleUpload() {
               <label class="label" for="name">Nombre del Skin:</label>
               <div class="control">
                 <input class="input" type="text" id="name" v-model="skinName" required />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Tipo de cuerpo:</label>
+              <div class="buttons">
+                <button 
+                  class="button" 
+                  :class="{'is-success': skinTypeId === 1}" 
+                  @click.prevent="selectSkinType(1)">
+                  Ancho
+                </button>
+                <button 
+                  class="button" 
+                  :class="{'is-success': skinTypeId === 2}" 
+                  @click.prevent="selectSkinType(2)">
+                  Delgado
+                </button>
               </div>
             </div>
             <div class="field">

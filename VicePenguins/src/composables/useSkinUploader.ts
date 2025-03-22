@@ -7,7 +7,7 @@ export default function useSkinUploader() {
   const messageClass = ref("");
   const isLoading = ref(false);
 
-  async function uploadSkin(skinName: string, file: File | null) {
+  async function uploadSkin(skinName: string, file: File | null, skinTypeId: number) {
     if (!file) {
       message.value = "Please select a file.";
       messageClass.value = "error";
@@ -40,6 +40,7 @@ export default function useSkinUploader() {
     formData.append("name", skinName);
     formData.append("file", file);
     formData.append("user_id", user_id);
+    formData.append("skin_type_id", skinTypeId.toString());
 
     isLoading.value = true;
     try {
