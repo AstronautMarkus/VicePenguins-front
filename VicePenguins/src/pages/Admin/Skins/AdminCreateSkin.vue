@@ -1,15 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import useSkinUploader from "../../../composables/useSkinUploader";
 import useSkinRenderer from "../../../composables/useSkinRenderer";
 import AdminLayout from '../../../layouts/AdminLayout.vue';
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen.vue";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
 const skinName = ref("");
 const file = ref(null);
 const previewUrl = ref(null);
 const { uploadSkin, message, messageClass, isLoading } = useSkinUploader();
-const { sceneRef, applySkin, toggleModelType } = useSkinRenderer();
+const { sceneRef, applySkin, toggleModelType, setRotationSpeed, togglePause, isPaused } = useSkinRenderer();
+const rotationSpeed = ref(0.01);
+
+const playPauseIcon = computed(() => (isPaused ? faPlay : faPause));
 
 function handleFileChange(event) {
   file.value = event.target.files[0];
@@ -19,6 +24,10 @@ function handleFileChange(event) {
   } else {
     previewUrl.value = null;
   }
+}
+
+function handleSpeedChange(event) {
+  setRotationSpeed(parseFloat(event.target.value));
 }
 
 async function handleUpload() {
@@ -66,19 +75,25 @@ async function handleUpload() {
           </div>
           <div class="box" style="width: 300px; height: 300px; margin: auto;" ref="sceneRef"></div>
           <div class="buttons is-centered mt-4">
-            <button class="button is-warning" @click="() => toggleModelType('wide')">
-              <figure class="image is-48x48">
-                <img src="/img/heads/wide_head.png" alt="Wide Head" />
-              </figure>
-              Ancho
-            </button>
-            <button class="button is-danger" @click="() => toggleModelType('slim')">
-              <figure class="image is-48x48">
-                <img src="/img/heads/slim_head.png" alt="Slim Head" />
-              </figure>
-              Delgado
-            </button>
+            <div class="buttons">
+              <button class="button is-warning" @click="() => toggleModelType('wide')">
+                <figure class="image is-48x48">
+                  <img src="/img/heads/wide_head.png" alt="Wide Head" />
+                </figure>
+                Ancho
+              </button>
+              <button class="button is-danger" @click="() => toggleModelType('slim')">
+                <figure class="image is-48x48">
+                  <img src="/img/heads/slim_head.png" alt="Slim Head" />
+                </figure>
+                Delgado
+              </button>
+              <button class="button" @click="togglePause">
+                <font-awesome-icon :icon="playPauseIcon" class="w-6 h-6 text-yellow-500" />
+              </button>
+            </div>
           </div>
+          <p class="help mt-2">Arrastra horizontalmente sobre el modelo para ajustar la velocidad de rotación.</p>
         </div>
       </div>
     </div>

@@ -11,6 +11,8 @@ export default function useSkinRenderer() {
   let wideModel: THREE.Object3D | null = null;
   let slimModel: THREE.Object3D | null = null;
   let currentModelType = "wide";
+  let isPaused = false;
+  let rotationSpeed = 0.01;
 
   const loadModels = () => {
     const loader = new GLTFLoader();
@@ -54,6 +56,73 @@ export default function useSkinRenderer() {
     updateModelVisibility();
   };
 
+  const togglePause = () => {
+    isPaused = !isPaused;
+  };
+
+  const setRotationSpeed = (speed: number) => {
+    rotationSpeed = speed;
+  };
+
+  const enableMouseControl = () => {
+    if (!sceneRef.value) return;
+
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+
+    sceneRef.value.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      previousMousePosition = { x: event.clientX, y: event.clientY };
+    });
+
+    sceneRef.value.addEventListener("mousemove", (event) => {
+      if (!isDragging) return;
+
+      const deltaX = event.clientX - previousMousePosition.x;
+
+      if (wideModel) wideModel.rotation.y += deltaX * 0.01;
+      if (slimModel) slimModel.rotation.y += deltaX * 0.01;
+
+      previousMousePosition = { x: event.clientX, y: event.clientY };
+    });
+
+    sceneRef.value.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    sceneRef.value.addEventListener("mouseleave", () => {
+      isDragging = false;
+    });
+  };
+
+  const enableSpeedControl = () => {
+    if (!sceneRef.value) return;
+
+    let isDragging = false;
+    let previousMousePosition = { x: 0 };
+
+    sceneRef.value.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      previousMousePosition = { x: event.clientX };
+    });
+
+    sceneRef.value.addEventListener("mousemove", (event) => {
+      if (!isDragging) return;
+
+      const deltaX = event.clientX - previousMousePosition.x;
+      rotationSpeed = Math.min(0.1, Math.max(0.01, rotationSpeed + deltaX * 0.0001));
+      previousMousePosition = { x: event.clientX };
+    });
+
+    sceneRef.value.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    sceneRef.value.addEventListener("mouseleave", () => {
+      isDragging = false;
+    });
+  };
+
   const initThree = () => {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -63,11 +132,15 @@ export default function useSkinRenderer() {
     renderer.setSize(300, 300);
     renderer.setClearColor(0x000000, 0);
 
+    // Configuración para mejorar contraste y saturación
+    renderer.toneMapping = THREE.ACESFilmicToneMapping; 
+    renderer.toneMappingExposure = 0.05;
+
     if (sceneRef.value) {
       sceneRef.value.appendChild(renderer.domElement);
     }
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 30);
     scene.add(ambientLight);
 
     loadModels(); // Load both models
@@ -76,8 +149,10 @@ export default function useSkinRenderer() {
 
   const animate = () => {
     requestAnimationFrame(animate);
-    if (wideModel) wideModel.rotation.y += 0.01;
-    if (slimModel) slimModel.rotation.y += 0.01;
+    if (!isPaused) {
+      if (wideModel) wideModel.rotation.y += rotationSpeed;
+      if (slimModel) slimModel.rotation.y += rotationSpeed;
+    }
     renderer.render(scene, camera);
   };
 
@@ -113,11 +188,18 @@ export default function useSkinRenderer() {
     applyTextureToModel(slimModel);
   };
 
-  onMounted(() => initThree());
+  onMounted(() => {
+    initThree();
+    enableMouseControl();
+    enableSpeedControl(); // Enable speed control
+  });
 
   return {
     sceneRef,
     applySkin,
-    toggleModelType, // Expose the toggle function
+    toggleModelType,
+    togglePause, // Expose pause/resume functionality
+    isPaused, // Expose paused state
+    setRotationSpeed, // Expose rotation speed control
   };
 }
