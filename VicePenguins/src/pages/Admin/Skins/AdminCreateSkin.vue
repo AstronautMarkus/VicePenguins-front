@@ -64,14 +64,14 @@ async function handleUpload() {
           </form>
         </div>
         <div class="column is-half has-text-centered">
-          <div v-if="previewUrl" class="box">
-            <p class="subtitle is-6">Preview:</p>
+          <div v-if="previewUrl" class="box preview-box">
+            <p class="subtitle is-6 has-text-centered mb-2">Preview:</p>
             <figure class="image is-128x128 is-inline-block">
               <img :src="previewUrl" alt="Skin preview" />
             </figure>
           </div>
-          <div v-else class="box">
-            <p class="subtitle is-6">No hay textura seleccionada</p>
+          <div v-else class="box preview-box">
+            <p class="subtitle is-6 has-text-centered">No hay textura seleccionada</p>
           </div>
           <div class="box" style="width: 300px; height: 300px; margin: auto;" ref="sceneRef"></div>
           <div class="buttons is-centered mt-4">
@@ -99,4 +99,14 @@ async function handleUpload() {
     </div>
   </AdminLayout>
 </template>
+
+<style scoped>
+.preview-box {
+  height: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>
 
