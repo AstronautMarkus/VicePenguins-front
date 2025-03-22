@@ -17,7 +17,10 @@ const mods = [
 <template>
     <AdminLayout>
 
+        <div class="buttons is-centered mt-4">
         <h1 class="title has-text-centered mt-4">Lista de Mods</h1>
+        <router-link to="/admin/mods/create" class="button is-success mx-5">Añadir Mod</router-link>
+        </div>
 
         <table class="table is-striped is-hoverable is-fullwidth">
             <thead>
