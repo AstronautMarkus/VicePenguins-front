@@ -2,12 +2,18 @@
 import AdminLayout from '../../../layouts/AdminLayout.vue';
 import { ref, onMounted } from 'vue';
 import useListSkins from '../../../composables/useListSkins';
+import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen.vue';
 
 const skins = ref([]);
+const isLoading = ref(true);
 const { fetchSkins } = useListSkins();
 
 onMounted(async () => {
-  skins.value = await fetchSkins();
+  try {
+    skins.value = await fetchSkins();
+  } finally {
+    isLoading.value = false;
+  }
 });
 </script>
 
@@ -17,7 +23,8 @@ onMounted(async () => {
       <h1 class="title has-text-centered mt-4">Lista de Skins</h1>
       <router-link to="/admin/skins/create" class="button is-success mx-5">Añadir Skin</router-link>
     </div>
-    <table class="table is-fullwidth is-striped mt-4">
+    <div v-if="isLoading" class="has-text-centered mt-4"><LoadingScreen/></div>
+    <table v-else class="table is-fullwidth is-striped mt-4">
       <thead>
         <tr>
           <th>Preview</th>
