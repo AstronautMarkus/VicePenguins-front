@@ -6,10 +6,16 @@ import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen.vue";
 
 const skinName = ref("");
 const file = ref(null);
+const previewUrl = ref(null);
 const { uploadSkin, message, messageClass, isLoading } = useSkinUploader();
 
 function handleFileChange(event) {
   file.value = event.target.files[0];
+  if (file.value) {
+    previewUrl.value = URL.createObjectURL(file.value);
+  } else {
+    previewUrl.value = null;
+  }
 }
 
 async function handleUpload() {
@@ -21,19 +27,42 @@ async function handleUpload() {
   <AdminLayout>
     <LoadingScreen v-if="isLoading" />
     <div v-else>
-      <h1>Upload a Skin</h1>
+      <h1 class="title is-2 has-text-centered mt-4">Publicar un nuevo skin</h1>
       <div v-if="message" :class="messageClass">{{ message }}</div>
-      <form @submit.prevent="handleUpload">
-        <div>
-          <label for="name">Skin Name:</label>
-          <input type="text" id="name" v-model="skinName" required />
+      <div class="columns">
+        <div class="column is-half">
+          <form @submit.prevent="handleUpload" class="box">
+            <div class="field">
+              <label class="label" for="name">Nombre del Skin:</label>
+              <div class="control">
+                <input class="input" type="text" id="name" v-model="skinName" required />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="file">Subir archivo:</label>
+              <div class="control">
+                <input class="input" type="file" id="file" @change="handleFileChange" accept="image/png, image/jpeg" required />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" type="submit" :disabled="isLoading">Subir Skin</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div>
-          <label for="file">Choose a skin file:</label>
-          <input type="file" id="file" @change="handleFileChange" accept="image/png, image/jpeg" required />
+        <div class="column is-half has-text-centered">
+          <div v-if="previewUrl" class="box">
+            <p class="subtitle is-6">Preview:</p>
+            <figure class="image is-128x128 is-inline-block">
+              <img :src="previewUrl" alt="Skin preview" />
+            </figure>
+          </div>
+          <div v-else class="box">
+            <p class="subtitle is-6">No hay textura seleccionada</p>
+          </div>
         </div>
-        <button type="submit" :disabled="isLoading">Upload</button>
-      </form>
+      </div>
     </div>
   </AdminLayout>
 </template>
