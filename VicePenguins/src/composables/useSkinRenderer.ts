@@ -8,7 +8,51 @@ export default function useSkinRenderer() {
   let renderer: THREE.WebGLRenderer;
   let scene: THREE.Scene;
   let camera: THREE.PerspectiveCamera;
-  let model: THREE.Object3D | null = null;
+  let wideModel: THREE.Object3D | null = null;
+  let slimModel: THREE.Object3D | null = null;
+  let currentModelType = "wide";
+
+  const loadModels = () => {
+    const loader = new GLTFLoader();
+
+    loader.load(
+      "/src/assets/models/minecraft_wide.gltf",
+      (gltf) => {
+        wideModel = gltf.scene;
+        wideModel.scale.set(1.5, 1.5, 1.5);
+        scene.add(wideModel);
+        updateModelVisibility();
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading wide model:", error);
+      }
+    );
+
+    loader.load(
+      "/src/assets/models/minecraft_slim.gltf",
+      (gltf) => {
+        slimModel = gltf.scene;
+        slimModel.scale.set(1.5, 1.5, 1.5);
+        scene.add(slimModel);
+        updateModelVisibility();
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading slim model:", error);
+      }
+    );
+  };
+
+  const updateModelVisibility = () => {
+    if (wideModel) wideModel.visible = currentModelType === "wide";
+    if (slimModel) slimModel.visible = currentModelType === "slim";
+  };
+
+  const toggleModelType = () => {
+    currentModelType = currentModelType === "wide" ? "slim" : "wide";
+    updateModelVisibility();
+  };
 
   const initThree = () => {
     scene = new THREE.Scene();
@@ -23,68 +67,50 @@ export default function useSkinRenderer() {
       sceneRef.value.appendChild(renderer.domElement);
     }
 
-
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
 
-    const loader = new GLTFLoader();
-    loader.load(
-      "/src/assets/models/minecraft_wide.gltf",
-      (gltf) => {
-        model = gltf.scene;
-
-        model.scale.set(1.5, 1.5, 1.5);
-
-        model.traverse((child) => {
-          if ((child as THREE.Mesh).isMesh) {
-            const mesh = child as THREE.Mesh;
-            if (mesh.material instanceof THREE.MeshStandardMaterial) {
-              mesh.material.map = new THREE.Texture();
-              mesh.material.needsUpdate = true;
-            }
-          }
-        });
-
-        scene.add(model);
-        animate();
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading GLTF model:", error);
-      }
-    );
+    loadModels(); // Load both models
+    animate();
   };
 
   const animate = () => {
     requestAnimationFrame(animate);
-    if (model) model.rotation.y += 0.01;
+    if (wideModel) wideModel.rotation.y += 0.01;
+    if (slimModel) slimModel.rotation.y += 0.01;
     renderer.render(scene, camera);
   };
 
   const applySkin = (textureUrl: string) => {
     skinTexture.value = textureUrl;
-    if (!model) return;
 
-    model?.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
-        const mesh = child as THREE.Mesh;
-        if (mesh.material instanceof THREE.MeshStandardMaterial) {
-          const texture = new THREE.Texture();
-          texture.image = new Image();
-          texture.image.src = textureUrl;
-          texture.image.onload = () => {
-            texture.needsUpdate = true;
-          };
-          texture.flipY = false;
-          texture.minFilter = THREE.NearestFilter;
-          texture.magFilter = THREE.NearestFilter;
+    const applyTextureToModel = (model: THREE.Object3D | null) => {
+      if (!model) return;
 
-          mesh.material.map = texture;
-          mesh.material.transparent = true;
-          mesh.material.needsUpdate = true;
+      model.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          const mesh = child as THREE.Mesh;
+          if (mesh.material instanceof THREE.MeshStandardMaterial) {
+            const texture = new THREE.Texture();
+            texture.image = new Image();
+            texture.image.src = textureUrl;
+            texture.image.onload = () => {
+              texture.needsUpdate = true;
+            };
+            texture.flipY = false;
+            texture.minFilter = THREE.NearestFilter;
+            texture.magFilter = THREE.NearestFilter;
+
+            mesh.material.map = texture;
+            mesh.material.transparent = true;
+            mesh.material.needsUpdate = true;
+          }
         }
-      }
-    });
+      });
+    };
+
+    applyTextureToModel(wideModel);
+    applyTextureToModel(slimModel);
   };
 
   onMounted(() => initThree());
@@ -92,5 +118,6 @@ export default function useSkinRenderer() {
   return {
     sceneRef,
     applySkin,
+    toggleModelType, // Expose the toggle function
   };
 }

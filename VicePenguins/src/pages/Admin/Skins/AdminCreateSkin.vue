@@ -9,7 +9,7 @@ const skinName = ref("");
 const file = ref(null);
 const previewUrl = ref(null);
 const { uploadSkin, message, messageClass, isLoading } = useSkinUploader();
-const { sceneRef, applySkin } = useSkinRenderer();
+const { sceneRef, applySkin, toggleModelType } = useSkinRenderer();
 
 function handleFileChange(event) {
   file.value = event.target.files[0];
@@ -65,6 +65,7 @@ async function handleUpload() {
             <p class="subtitle is-6">No hay textura seleccionada</p>
           </div>
           <div ref="sceneRef" class="box" style="width: 300px; height: 300px; margin: auto;"></div>
+          <button class="button is-info mt-4" @click="toggleModelType">Alternar Modelo</button>
         </div>
       </div>
     </div>
