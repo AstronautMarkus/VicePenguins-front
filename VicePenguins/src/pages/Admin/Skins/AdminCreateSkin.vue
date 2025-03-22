@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import useSkinUploader from "../../../composables/useSkinUploader";
+import useSkinRenderer from "../../../composables/useSkinRenderer";
 import AdminLayout from '../../../layouts/AdminLayout.vue';
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen.vue";
 
@@ -8,11 +9,13 @@ const skinName = ref("");
 const file = ref(null);
 const previewUrl = ref(null);
 const { uploadSkin, message, messageClass, isLoading } = useSkinUploader();
+const { sceneRef, applySkin } = useSkinRenderer();
 
 function handleFileChange(event) {
   file.value = event.target.files[0];
   if (file.value) {
     previewUrl.value = URL.createObjectURL(file.value);
+    applySkin(previewUrl.value);
   } else {
     previewUrl.value = null;
   }
@@ -61,6 +64,7 @@ async function handleUpload() {
           <div v-else class="box">
             <p class="subtitle is-6">No hay textura seleccionada</p>
           </div>
+          <div ref="sceneRef" class="box" style="width: 300px; height: 300px; margin: auto;"></div>
         </div>
       </div>
     </div>
