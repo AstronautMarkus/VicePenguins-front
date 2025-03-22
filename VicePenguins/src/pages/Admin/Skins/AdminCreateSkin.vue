@@ -64,8 +64,21 @@ async function handleUpload() {
           <div v-else class="box">
             <p class="subtitle is-6">No hay textura seleccionada</p>
           </div>
-          <div ref="sceneRef" class="box" style="width: 300px; height: 300px; margin: auto;"></div>
-          <button class="button is-info mt-4" @click="toggleModelType">Alternar Modelo</button>
+          <div class="box" style="width: 300px; height: 300px; margin: auto;" ref="sceneRef"></div>
+          <div class="buttons is-centered mt-4">
+            <button class="button is-warning" @click="() => toggleModelType('wide')">
+              <figure class="image is-48x48">
+                <img src="/img/heads/wide_head.png" alt="Wide Head" />
+              </figure>
+              Ancho
+            </button>
+            <button class="button is-danger" @click="() => toggleModelType('slim')">
+              <figure class="image is-48x48">
+                <img src="/img/heads/slim_head.png" alt="Slim Head" />
+              </figure>
+              Delgado
+            </button>
+          </div>
         </div>
       </div>
     </div>

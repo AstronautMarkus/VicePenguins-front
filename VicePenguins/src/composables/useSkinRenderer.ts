@@ -49,8 +49,8 @@ export default function useSkinRenderer() {
     if (slimModel) slimModel.visible = currentModelType === "slim";
   };
 
-  const toggleModelType = () => {
-    currentModelType = currentModelType === "wide" ? "slim" : "wide";
+  const toggleModelType = (modelType: "wide" | "slim") => {
+    currentModelType = modelType;
     updateModelVisibility();
   };
 
