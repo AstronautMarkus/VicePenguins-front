@@ -45,7 +45,7 @@ onMounted(async () => {
           <td>{{ new Date(skin.created_at).toLocaleDateString() }}</td>
           <td>X</td>
           <td>
-            <button class="button is-small is-info mx-2">Editar</button>
+            <router-link :to="`/admin/skins/edit/${skin.id}`" class="button is-small is-info mx-2">Editar</router-link>
             <button class="button is-small is-danger">Borrar</button>
           </td>
         </tr>

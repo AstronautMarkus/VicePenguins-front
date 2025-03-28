@@ -12,6 +12,7 @@ import AdminModsList from './pages/Admin/Mods/AdminModsList.vue';
 import AdminCreateMod from './pages/Admin/Mods/AdminCreateMod.vue';
 import AdminCreateSkin from './pages/Admin/Skins/AdminCreateSkin.vue';
 import AdminListSkins from './pages/Admin/Skins/AdminListSkins.vue';
+import AdminUpdateSkins from './pages/Admin/Skins/AdminUpdateSkins.vue'
 
 const routes = [
   { path: '/', component: Home, meta: { title: 'Inicio' } },
@@ -28,6 +29,7 @@ const routes = [
     { path: 'mods/create', component: AdminCreateMod, meta: { title: 'Crear mod' } },
     { path: 'skins', component: AdminListSkins, meta: { title: 'Lista de skins' } },
     { path: 'skins/create', component: AdminCreateSkin, meta: { title: 'Crear skin' } },
+    { path: 'skins/edit/:id', component: AdminUpdateSkins, meta: { title: 'Actualizar skin' } },
   ]}
 ];
 
