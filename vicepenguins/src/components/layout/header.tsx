@@ -48,8 +48,8 @@ export default function Header() {
             <li className="hover:text-white cursor-pointer">Mapas</li>
           </ul>
           <div className="mt-4 space-y-2 text-xs">
-            <span className="block cursor-pointer hover:underline">Iniciar sesión</span>
-            <span className="block cursor-pointer hover:underline">Registrarse</span>
+            <Link to="/auth/login" className="block cursor-pointer hover:underline">Iniciar sesión</Link>
+            <Link to="/auth/register" className="block cursor-pointer hover:underline">Registrarse</Link>
           </div>
         </div>
       )}
